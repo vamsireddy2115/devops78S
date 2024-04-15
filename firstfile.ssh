@@ -1,0 +1,13 @@
+#creating my first file 
+content: Installation steps for Git.
+Steps to follow:
+1.Istall homebrew
+2.brew installl git 
+3.signup for github and create a repo
+4.Genarate a classic token
+5.clone that repo to our local laptop
+6.write a file using vs code in repo directory
+7.git status
+8.git add .
+9.git commit -m "firstfile"
+git push -u origin main
