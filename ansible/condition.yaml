@@ -1,0 +1,20 @@
+- name: conditions
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: adding daemon-user
+      ansible.builtin.command: id vamsi
+      register: user
+      ignore_errors: true
+
+    - name: print user info
+      ansible.builtin.debug:
+        msg: "Username is {{user}}"
+
+    - name: checks user exists or not.
+      ansible.builtin.command: useradd vamsi
+      when: user.rc != 0
+
+    - name: say hello
+      ansible.builtin.debug:
+       msg: "Hello"

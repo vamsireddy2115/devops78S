@@ -1,0 +1,9 @@
+- name: vairables from different file
+  hosts: localhost
+  vars_files:
+  - var.yaml
+  tasks:
+    - name: calling vairables from the file
+      ansible.builtin.debug:
+        msg: "Hello I am lrearning {{course}} from the trainer {{trainer}} and the duration is {{duration}}."
+

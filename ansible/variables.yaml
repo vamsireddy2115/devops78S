@@ -1,0 +1,17 @@
+- name: vairables
+  hosts: localhost
+  vars:
+    course: "Devops"
+    trainer: "Shiva"
+    duration: "3 Months"
+  tasks:
+    - name: variables from task overriding
+      vars: # variables should add before ansible.builtin line.
+        course: "Devops1"
+        trainer: "Shiva1"
+        duration: "3 Months1"
+      ansible.builtin.debug:
+          msg: "Hello I am lrearning {{course}} from the trainer {{trainer}} and the duration is {{duration}}."
+    - name: variables from parent
+      ansible.builtin.debug:
+        msg: "Hello I am lrearning {{course}} from the trainer {{trainer}} and the duration is {{duration}}."
