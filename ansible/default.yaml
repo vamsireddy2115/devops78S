@@ -1,0 +1,25 @@
+- name: filter conditions
+  host: localhost
+  vars:
+    course: "Devops"
+  tasks:
+    - name: default value
+      ansible.builtin.debug:
+       msg: "Hello I am learning {{course | default('ansible')}}"
+    - name: lowercase
+      vars:
+        name: VAMSsireddY
+      ansible.builtin.debug:
+        msg: "Hello my name is {{ name | lower }}"
+    - name: upper
+      vars:
+        name: VAMSsireddY
+      ansible.builtin.debug:
+        msg: "Hello my name is {{ name | upper }}"
+    - name: age
+      vars:
+        numbers: [23,24,56,78]
+      ansible.builtin.debug:
+        msg: "Minumum age is {{ number | min }}, Maximum age is {{ number | max }}"
+      
+      
