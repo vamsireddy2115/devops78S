@@ -1,5 +1,5 @@
 - name: filter conditions
-  host: localhost
+  hosts: localhost
   vars:
     course: "Devops"
   tasks:
