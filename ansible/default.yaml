@@ -20,6 +20,6 @@
       vars:
         numbers: [23,24,56,78]
       ansible.builtin.debug:
-        msg: "Minumum age is {{ number | min }}, Maximum age is {{ number | max }}"
+        msg: "Minumum age is {{ numbers | min }}, Maximum age is {{ numbers | max }}"
       
       
