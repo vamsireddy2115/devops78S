@@ -1,7 +1,5 @@
 - name: configure and manage forntend
   hosts: frontend
-  vars:
-
   become: yes
   tasks:
     - name: install nginx
@@ -17,7 +15,7 @@
     - name: create directory for fronted html
       ansible.builtin.file:
         path: /usr/share/nginx/html
-        state: direcotry
+        state: directory
 
     - name: download the zip file
       ansible.builtin.get_url:
