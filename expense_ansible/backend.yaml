@@ -12,7 +12,7 @@
       ansible.builtin.command: dnf module disable nodejs:18 -y
 
     - name: enable nodejs
-      ansible.builtin.command: dnf module enable modejs:20 -y
+      ansible.builtin.command: dnf module enable nodejs:20 -y
 
     - name: installation of nodejs and mysql
       ansible.builtin.dnf:
