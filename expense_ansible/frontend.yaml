@@ -33,4 +33,10 @@
         src: frontend.conf
         dest: /etc/nginx/default.d/frontend.conf
 
+    - name: start and enable server
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
+
     
