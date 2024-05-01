@@ -1,0 +1,41 @@
+- name: Conifguring DB server.
+  hosts: DB
+  vars:
+    login_host: db.vsreddy.online
+  vars_prompt:
+    - name: password
+      prompt: "Please enter your passowrd:"
+      private: yes
+  tasks:
+    - name: Install Mysql-Server
+      ansible.builtin.dnf:
+        name: mysql_server
+        state: latest
+    - name: enable the server
+      ansible.builtin.service:
+        name: mysql_server
+        state: started
+        enabled: yes
+    - name: Install mysql packages
+      ansible.builtin.pip:
+        - name: 
+          - PyMySQL
+          - cryptography
+    - name: check wether the password is set or not
+      community.mysql.mysql_info:
+        login_user: root
+        login_password: "{{ passowrd }}"
+        login_host: "{{ login_host }}"
+        filter: version
+      ignore_errors: yes
+      register: mysql_connection_details
+    - name: printing the mysql_connection_details
+      ansible.builtin.debug:
+       msg: "DB details are {{ mysql_connection_details }}"
+  
+    - name: set password for DB
+      ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ password }}"
+      when: mysql_connection_details.failed is true
+
+
+        
