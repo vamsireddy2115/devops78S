@@ -17,10 +17,11 @@
 
     - name: install nodejs and mysql
       ansible.builtin.dnf:
-        - name: nodejs
-          state: latest
-        - name: mysql
-          state: latest
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - nodejs
+        - mysql
     
     - name: add user
       ansible.builtin.user:
