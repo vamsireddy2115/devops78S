@@ -18,7 +18,7 @@
         enabled: yes
     - name: Install mysql packages
       ansible.builtin.pip:
-        - name: 
+        name: 
           - PyMySQL
           - cryptography
     - name: check wether the password is set or not
