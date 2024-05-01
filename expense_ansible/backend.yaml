@@ -65,7 +65,7 @@
         login_user:
         login_password:
         login_host:
-        src: /app/schema/backend.sql
+        target: /app/schema/backend.sql
         state: import
         name: all
 
