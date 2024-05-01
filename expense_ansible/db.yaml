@@ -22,6 +22,7 @@
         name: 
           - PyMySQL
           - cryptography
+      executable: pip1.1.0
     - name: check wether the password is set or not
       community.mysql.mysql_info:
         login_user: root
