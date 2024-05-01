@@ -54,7 +54,7 @@
         dest: /etc/systemd/system/backend.service
 
     - name: install python dependencies
-      ansible.builtin.dnf:
+      ansible.builtin.pip:
         name:
           - PyMySQL
           - cryptography
