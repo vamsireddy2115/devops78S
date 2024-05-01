@@ -1,0 +1,79 @@
+- name: configuring backend service
+  hosts: backend
+  vars:
+    login_host: db.vsreddy.online
+  vars_prompt:
+    - name: password
+      prompt: "Please, enter your password"
+      private: yes
+
+  become: yes
+  tasks:
+    - name: disable nodejs
+      ansible.builtin.command: dnf module disable nodejs:18 -y
+
+    - name: enable nodejs
+      ansible.builtin.command: dnf module enable nodejs:20 -y
+
+    - name: install nodejs and mysql
+      ansible.builtin.dnf:
+        - name: nodejs
+          state: latest
+        - name: mysql
+          state: latest
+    
+    - name: add user
+      ansible.builtin.user:
+        name: vamsi
+
+    - name: create a directory
+      ansible.builtin.file:
+        path: /app
+        state: directory
+
+    - name: download the backend code
+      ansible.builtin.get_url: 
+        url:
+        dest: /tmp/backend.zip
+
+    - name: unzipping the backend code
+      ansible.builtin.unarchive:
+        src: /tmp/backend.zip
+        dest: /app
+        remote_src: yes
+
+    - name: installl npm
+      ansible.builtin.command: npm install
+      args:
+        chdir: /app
+
+    - name: copy backend service
+      ansible.builtin.copy:
+        src: backend.service
+        dest: /etc/systemd/system/backend.service
+
+    - name: install python dependencies
+      ansible.builtin.dnf:
+        name:
+          - PyMySQL
+          - cryptography
+        executable: pip3.9
+      
+    - name: load data to the db
+      community.mysql.mysql_db:
+        login_user:
+        login_password:
+        login_host:
+        src: /app/schema/backend.sql
+        state: import
+        name: all
+
+    - name: run daemon reload command
+      ansible.builtin.systemd_service:
+        daemon_reload: trueß
+
+    - name: start and enable backend server
+      ansible.builtin.service:
+        name: backend
+        state: started
+        enabled: yes 
