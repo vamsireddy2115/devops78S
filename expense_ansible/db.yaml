@@ -25,7 +25,7 @@
     - name: check wether the password is set or not
       community.mysql.mysql_info:
         login_user: root
-        login_password: "{{ passowrd }}"
+        login_password: "{{ password }}"
         login_host: "{{ login_host }}"
         filter: version
       ignore_errors: yes
