@@ -62,9 +62,9 @@
       
     - name: load data to the db
       community.mysql.mysql_db:
-        login_user:
-        login_password:
-        login_host:
+        login_user: root
+        login_password: "{{ password }}"
+        login_host: "{{ login_host }}"
         target: /app/schema/backend.sql
         state: import
         name: all
