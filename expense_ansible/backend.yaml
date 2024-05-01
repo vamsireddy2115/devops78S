@@ -55,7 +55,7 @@
         name:
           - PyMySQL
           - cryptography
-        exectuable: pip3.9
+        executable: pip3.9
 
     - name: load data to DB server
       community.mysql.mysql_db:
