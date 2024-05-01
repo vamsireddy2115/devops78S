@@ -1,5 +1,6 @@
 - name: Conifguring DB server.
   hosts: DB
+  become: yes
   vars:
     login_host: db.vsreddy.online
   vars_prompt:
