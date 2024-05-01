@@ -24,7 +24,7 @@
         name:
           - PyMySQL
           - cryptograph
-        executable: yes
+        executable: pip3.9
 
     - name: checking wether password is set or not
       community.mysql.mysql_info:
