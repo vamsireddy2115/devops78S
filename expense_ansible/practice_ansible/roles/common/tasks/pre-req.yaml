@@ -1,0 +1,14 @@
+- name: delete a direcotry
+  ansible.builtin.file:
+    path: "{{ app_location }}"
+    state: absent
+
+- name: create a direcotry
+  ansible.builtin.file:
+    path: "{{ app_location }}"
+    state: directory
+
+- name: download and unzip the file
+  ansible.builtin.get_url:
+    url: "{{zip_url }}"
+    dest: "{{ app_location }}"
